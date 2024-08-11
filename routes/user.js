@@ -9,6 +9,8 @@ router.get('/:id', getUserById);
 
 
 
+
+
 // Get all users
 // router.get('/', (req, res) => {
 //   const query = 'SELECT * FROM user';
