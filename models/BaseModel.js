@@ -24,6 +24,11 @@ class BaseModel {
     delete(id, callback) {
         this.db.query(`DELETE FROM ${this.tableName} WHERE id = ?`, [id], callback);
     }
+
+    pagination(page,limit,callback){
+        const offset = (page - 1) * limit;
+        this.db.query(`SELECT * FROM ${this.tableName} LIMIT ? OFFSET ?`, [limit, offset], callback);
+    }
 }
 
 module.exports = BaseModel;
