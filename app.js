@@ -9,6 +9,8 @@ const port = 3000;
 // Middleware
 app.use(bodyParser.json());
 
+
+
 //Routes
 app.use('/user', userRouter);
 app.use('/product', productRouter);
