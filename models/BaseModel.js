@@ -29,6 +29,13 @@ class BaseModel {
         const offset = (page - 1) * limit;
         this.db.query(`SELECT * FROM ${this.tableName} LIMIT ? OFFSET ?`, [limit, offset], callback);
     }
+
+    login(data, callback){
+        this.db.query(`SELECT * FROM ${this.tableName} WHERE Email = ? `, [data.Email], callback);
+    }
+    register(data, callback){
+        this.db.query(`INSERT INTO ${this.tableName} SET ?`, data, callback);
+    }
 }
 
 module.exports = BaseModel;
