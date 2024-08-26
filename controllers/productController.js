@@ -35,48 +35,47 @@ exports.getProductById =  (req, res) => {
 }
 
 
-// // Create new user
-// router.post('/', (req, res) => {
-//     const { Name,Price,Stock,Category,Gender,Size } = req.body;
-//     const query = 'INSERT INTO product (name,price,stock,category,gender,size) VALUES (?,?,?,?,?,?)';
-//     connection.query(query, [Name,Price,Stock,Category,Gender,Size], (err, results) => {
-//         if (err) {
-//             console.error('Error creating user:', err);
-//             res.status(500).send('Server error');
-//             return;
-//         }
-//         res.status(201).json({ id: results.insertId,Name,Price,Stock,Category,Gender,Size});
-//     });
-// });
-//
-// // Update user
-// router.put('/:id', (req, res) => {
-//     const { id } = req.params;
-//     const { Name,Price,Stock,Category,Gender,Size } = req.body;
-//     const query = 'UPDATE user SET Name = ? ,Price = ? ,Stock = ?,Category = ?,Gender = ? ,Size = ? WHERE id = ?';
-//     connection.query(query, [Name,Price,Stock,Category,Gender,Size,id], (err, results) => {
-//         if (err) {
-//             console.error('Error updating user:', err);
-//             res.status(500).send('Server error');
-//             return;
-//         }
-//         res.send('User updated');
-//     });
-// });
-//
-// // Delete user
-// router.delete('/:id', (req, res) => {
-//     const { id } = req.params;
-//     const query = 'DELETE FROM product WHERE id = ?';
-//     connection.query(query, [id], (err, results) => {
-//         if (err) {
-//             console.error('Error deleting user:', err);
-//             res.status(500).send('Server error');
-//             return;
-//         }
-//         res.send('User deleted');
-//     });
-// });
+//  Create new Product
+exports.createProduct = (req, res) => {
+    const {Name, Price, Stock, Category, Gender, Size} = req.body;
+    ProductModel.create( {Name, Price, Stock, Category, Gender, Size}, (err, results) => {
+        if (err) {
+            console.error('Error creating user:', err);
+            res.status(500).send('Server error');
+            return;
+        }
+        res.status(201).json({id: results.insertId, Name, Price, Stock, Category, Gender, Size});
+    });
+}
+
+
+ // Update Product
+exports.updateProduct = (req, res) => {
+    const userId = req.params.id;
+    const { Name,Price,Stock,Category,Gender,Size } = req.body;
+    ProductModel.update(userId,{Name,Price,Stock,Category,Gender,Size}, (err, results) => {
+        if (err) {
+            console.error('Error updating user:', err);
+            res.status(500).send('Server error');
+            return;
+        }
+        res.send('User updated');
+    });
+}
+
+
+// Delete user
+exports.deleteProduct =  (req, res) => {
+    const { id } = req.params;
+    ProductModel.delete(id, (err, results) => {
+        if (err) {
+            console.error('Error deleting user:', err);
+            res.status(500).send('Server error');
+            return;
+        }
+        res.send('User deleted');
+    });
+}
 
 
 
