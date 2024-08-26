@@ -1,6 +1,5 @@
 const ProductModel = require('../models/ProductModel');
 const { validationResult } = require('express-validator');
-const UserModel = require("../models/UserModel");
 
 exports.getAllProducts =  (req, res) => {
     const page = parseInt(req.query.page);
@@ -34,6 +33,7 @@ exports.getProductById =  (req, res) => {
         res.json(result);
     });
 }
+
 
 // // Create new user
 // router.post('/', (req, res) => {
