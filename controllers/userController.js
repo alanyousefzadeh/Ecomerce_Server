@@ -2,6 +2,7 @@
 const UserModel = require('../models/UserModel');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const {userFieldsValidation} = require("./helperFunctions");
 
 exports.getAllUsers = (req, res) => {
     const page = parseInt(req.query.page);
@@ -36,22 +37,7 @@ exports.getUserById = (req, res) => {
 
 exports.createUser = (req, res) => {
     const { Email, Password, Address,Phone } = req.body;
-
-    const isValidPassword = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
-    const isValidEmail = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/g;
-    const isValidPhone =/^\d{10}$/;
-    if (!Email || !Password || !Address || !Phone) {
-        return res.status(400).send('Please fill all the required fields');
-    }
-    if(!Email.match(isValidEmail)){
-        return res.status(400).send('Invalid Email');
-    }
-    if(!Password.match(isValidPassword)){
-        return res.status(400).send('Invalid Password');
-    }
-    if(!String(Phone).match(isValidPhone)){
-        return res.status(400).send('Invalid Phone');
-    }
+    userFieldsValidation(req, res,Email,Password,Address,Phone);
     UserModel.create({Email, Password, Address,Phone}, (err, result) => {
         if (err) {
             return res.status(500).send('Database query error');
@@ -64,21 +50,7 @@ exports.createUser = (req, res) => {
 exports.updateUser = (req, res) => {
     const userId = req.params.id;
     const { Email, Password, Address,Phone } = req.body;
-    const isValidPassword = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
-    const isValidEmail = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/g;
-    const isValidPhone =/^\d{10}$/;
-    if (!Email || !Password || !Address || !Phone) {
-        return res.status(400).send('Please fill all the required fields');
-    }
-    if(!Email.match(isValidEmail)){
-        return res.status(400).send('Invalid Email');
-    }
-    if(!Password.match(isValidPassword)){
-        return res.status(400).send('Invalid Password');
-    }
-    if(!String(Phone).match(isValidPhone)){
-        return res.status(400).send('Invalid Phone');
-    }
+    userFieldsValidation(req, res,Email,Password,Address,Phone);
     UserModel.update(userId, {Email, Password, Address,Phone}, (err, result) => {
         if (err) {
             return res.status(500).send('Database query error');
