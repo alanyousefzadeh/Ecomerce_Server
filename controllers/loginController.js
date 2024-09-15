@@ -10,6 +10,11 @@ exports.login = (req, res) => {
     if (!Email || !Password) {
         return res.status(400).send('Please fill all the required fields');
     }
+    bcrypt.hash(Password, 10, (err, hash) => {
+            console.log('Hashed password:', hash);
+        }
+    );
+
     UserModel.login({Email}, (err, results) => {
             if(err){
                 return res.status(500).send('Database query error');
