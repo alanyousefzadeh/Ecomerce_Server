@@ -4,7 +4,6 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Ecomerce_Server.iml" filepath="$PROJECT_DIR$/.idea/Ecomerce_Server.iml" />
       <module fileurl="file://$PROJECT_DIR$/../ecomerce_cient/.idea/ecomerce_cient.iml" filepath="$PROJECT_DIR$/../ecomerce_cient/.idea/ecomerce_cient.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../ecomerce_client/.idea/ecomerce_client.iml" filepath="$PROJECT_DIR$/../ecomerce_client/.idea/ecomerce_client.iml" />
     </modules>
   </component>
 </project>

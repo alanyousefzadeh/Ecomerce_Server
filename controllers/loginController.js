@@ -3,8 +3,8 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 exports.login = (req, res) => {
-    console.log('Request received at /register'); // Debugging log
-    const {Email, Password} = req.body;
+    console.log('Request received at /login'); // Debugging log
+    const {Email,Password} = req.body;
     console.log('Received data:', Email, Password); // Debugging log
 
     if (!Email || !Password) {
@@ -36,7 +36,7 @@ exports.login = (req, res) => {
                         expiresIn: '12h'
                     });
                     console.log('Token:', token); // Debugging log
-                    res.json({ token });
+                    res.json({ token , user});
                 }
             );
         }

@@ -5,11 +5,14 @@ const loginRouter = require('./routes/login');
 const userRouter = require('./routes/user');
 const productRouter = require('./routes/product');
 const verifyToken = require("./middleware/auth");
+const cors = require('cors');
 
 const app = express();
-const port = 3000;
+const port = 8080;
 
 // Middleware
+
+app.use(cors());
 app.use(bodyParser.json());
 
 app.use('/register', registerRouter);

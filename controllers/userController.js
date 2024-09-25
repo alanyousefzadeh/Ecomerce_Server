@@ -35,6 +35,16 @@ exports.getUserById = (req, res) => {
     });
 };
 
+exports.getUserByEmail = (req, res) => {
+    const Email = req.params.Email;
+    UserModel.getByEmail(Email, (err, result) => {
+        if (err) {
+            return res.status(500).send('Database query error');
+        }
+        res.json(result);
+    });
+}
+
 exports.createUser = (req, res) => {
     const { Email, Password, Address,Phone } = req.body;
     userFieldsValidation(req, res,Email,Password,Address,Phone);

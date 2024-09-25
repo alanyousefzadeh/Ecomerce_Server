@@ -13,6 +13,9 @@ class BaseModel {
         this.db.query(`SELECT * FROM ${this.tableName} WHERE id = ?`, [id], callback);
     }
 
+    getByEmail(Email, callback) {
+        this.db.query(`SELECT * FROM ${this.tableName} WHERE email = ?`, [Email], callback);
+    }
     create(data, callback) {
         this.db.query(`INSERT INTO ${this.tableName} SET ?`, data, callback);
     }
