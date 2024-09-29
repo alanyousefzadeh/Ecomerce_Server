@@ -111,8 +111,8 @@ exports.changeEmail = (req, res) => {
         port: 465,
         secure: true,
         auth: {
-            user: "alanyou73@gmail.com",
-            pass: "bnqc hafl msuo oeyn",
+            user: process.env.Email,
+            pass: process.env.Email_Password,
         },
     });
 
