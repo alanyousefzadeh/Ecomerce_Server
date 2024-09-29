@@ -4,7 +4,10 @@ const jwt = require('jsonwebtoken');
 const jwtSecret = process.env.JWT
 
 const verifyToken = (req, res, next) => {
-    const token = req.headers['authorization'];
+    let token = req.headers['authorization'];
+    if(token === undefined){
+        token = req.body.token
+    }
     console.log('Token:', token); // Debugging log
 
 

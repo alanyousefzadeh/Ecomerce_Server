@@ -7,7 +7,10 @@ class LoginModel extends BaseModel {
         super('user', db);
     }
 
-    // Add any user-specific methods here
+    updateEmail(id, Email, callback) {
+        const query = `UPDATE ${this.tableName} SET Email = ? WHERE id = ?`;
+        this.db.query(query, [Email,id], callback);
+    }
 }
 
 module.exports = new LoginModel();
